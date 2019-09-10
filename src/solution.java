@@ -1,21 +1,21 @@
 public class solution {
-	color [] alf_ = {new color('r'), new color('b'), new color('y'), new color('o'), new color('p')};
-	color [] answer = {new color(), new color(), new color(), new color()};
-	color [] alf = {new color('r'), new color('b'), new color('y'), new color('o'), new color('p')};
+	char [] alf_ = {'r', 'b', 'y', 'o', 'p', 'g'};
+	char [] answer = {' ', ' ', ' ', ' '};
+	char [] alf = {'r', 'b', 'y', 'o', 'p', 'g'};
 	
 	public solution(){
 
 		for (int i = 0; i < this.answer.length; i++) {
-			int temp = (int) (Math.random() * this.alf.length);
+			int posibleValueAssignment = (int) (Math.random() * this.alf.length);
 			
-			while(!alf[temp].complete()){
-				temp = (int) (Math.random() * this.alf.length);
+			while(alf[posibleValueAssignment] == ' '){
+				posibleValueAssignment = (int) (Math.random() * this.alf.length);
 			}
-			this.answer[i].setName(this.alf[temp].getName());
-			alf[temp].setName(' ');
+			this.answer[i] = this.alf[posibleValueAssignment];
+			alf[posibleValueAssignment] = ' ';
 	    }
 		for (int i = 0; i < this.answer.length; i++) {
-			System.out.println(answer[i].getName());
+			System.out.println(answer[i]);
 		}
 	}
 	
@@ -25,9 +25,8 @@ public class solution {
 		int counter = 0;
 		int winCounter = 0;
 		for(int i = 0; i < this.answer.length; i++){
-			color temp = new color(sim.charAt(i));
 			for(int j = 0; j < this.answer.length; j++){
-				if(temp.check(this.answer[j].getName())){
+				if(sim.charAt(i) == this.answer[j]){
 					if(i == j){
 						result[counter] = 'D';
 						winCounter++;
@@ -48,7 +47,7 @@ public class solution {
 			boolean result = false;
 			for(int j = 0; j< alf_.length; j++){
 
-				if(sim.charAt(i) == alf_[j].getName()) result = true; 
+				if(sim.charAt(i) == alf_[j]) result = true; 
 			}
 			if(!result) return false;
 		}
