@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
-public class game {
+public class Game {
 	int turns;
-	solution answer;
+	Solution answer;
 	boolean win;
 	String [] tablero = {"", "", "", "", "", "", "", "", "", ""};
 	
-	public game(){
+	public Game(){
 		this.start();
 	}
 	
 	public void start(){
 		this.turns = 0;
-		this.answer = new solution();
+		this.answer = new Solution();
 		this.win = false;
 		System.out.println("------MASTER MIND------");
 		System.out.println("SECRET: ****");

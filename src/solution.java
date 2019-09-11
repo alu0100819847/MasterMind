@@ -1,9 +1,9 @@
-public class solution {
+public class Solution {
 	char [] alf_ = {'r', 'b', 'y', 'o', 'p', 'g'};
 	char [] answer = {' ', ' ', ' ', ' '};
 	char [] alf = {'r', 'b', 'y', 'o', 'p', 'g'};
 	
-	public solution(){
+	public Solution(){
 
 		for (int i = 0; i < this.answer.length; i++) {
 			int posibleValueAssignment = (int) (Math.random() * this.alf.length);
@@ -14,9 +14,6 @@ public class solution {
 			this.answer[i] = this.alf[posibleValueAssignment];
 			alf[posibleValueAssignment] = ' ';
 	    }
-		for (int i = 0; i < this.answer.length; i++) {
-			System.out.println(answer[i]);
-		}
 	}
 	
 	public char [] check(String sim){
