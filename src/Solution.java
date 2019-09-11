@@ -14,6 +14,9 @@ public class Solution {
 			this.answer[i] = this.alf[posibleValueAssignment];
 			alf[posibleValueAssignment] = ' ';
 	    }
+		for (int i = 0; i < this.answer.length; i++) {
+			System.out.println(answer[i]);
+		}
 	}
 	
 	public char [] check(String sim){
