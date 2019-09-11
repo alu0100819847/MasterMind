@@ -1,24 +1,21 @@
 import java.util.Scanner;
 
 public class Game {
-	int turns;
+	int turnCounter;
 	Solution answer;
 	boolean win;
-	String [] tablero = {"", "", "", "", "", "", "", "", "", ""};
+	Result [] result;
 	
 	public Game(){
 		this.start();
 	}
 	
 	public void start(){
-		this.turns = 0;
-		this.answer = new Solution();
-		this.win = false;
-		System.out.println("------MASTER MIND------");
-		System.out.println("SECRET: ****");
-		int result = this.turn();
-		if(result == 1) System.out.print("YOU WIN!!!");
-		if(result == 2) System.out.print("YOU LOSE!!!");
+		GameView gameView = new GameView();
+		this.initializeData();
+		gameView.printSecretCombination();
+		this.turn(gameView);
+		
 		Scanner inp = new Scanner(System.in);
 		System.out.println("\nDo you want to play again?");
 		System.out.print("\n1- Play Again.");
@@ -37,45 +34,37 @@ public class Game {
 		}
 	}
 	
-	private int turn(){
-		int result = 2;		
-		if(turns == 10) return 2;
+	private void turn(GameView gameView){	
+		if(turnCounter == 10) gameView.lose();
 		else{
-			System.out.println("\nIntento: " + (turns+1));
+			
 			this.printTable();
-			System.out.print("\nEnter 4 characters word: ");
-			Scanner inp = new Scanner(System.in);
-		    String input = inp.nextLine();
-		    char [] checkAnswer = this.answer.check(input);
-		    if(checkAnswer[0] == '*') System.out.print("Wrong length word");
-		    else{
-	    		if(!this.answer.checkCharacters(input)) System.out.print("Wrong characters. Use: r, b, y, o, p, g");
-	    		else {
-			    	if(checkAnswer[0] == 'w'){
-			    		this.win = true;
-			    	}
-			    	else{
-			    		System.out.print(new String(checkAnswer));
-			    		setTable(input, checkAnswer);
-			    		turns++;
-			    	}
-	    		}
+			gameView.printTurnInformation(this.turnCounter);	    
+		    Attempt attempt = new Attempt(gameView.readAttempt());
+		    if(attempt.getState() != 0){
+		    	gameView.printValidateCodes(attempt.getState());
 		    }
-			if(this.win) return 1;
-			else {
-				result = turn();
-			}
+		    else{
+		    	this.result[turnCounter] = this.answer.check(attempt);
+
+		    	if(!this.result[turnCounter].win()){
+		    		for(int i = 0; i < this.turnCounter; i++){
+		    			System.out.println("tablero");
+		    		}
+		    		this.turnCounter++;
+		    		this.turn(gameView);
+		    	} else {
+		    		this.win = true;
+		    		gameView.win();
+		    	}
+		    }
 		}
-		return result;
 	}
 	
-	private void setTable(String try_, char [] result){
-		tablero[this.turns] = try_ + "-->" + new String(result);
-	}
-	
-	private void printTable(){
-		for(int i = 0; i < this.turns; i++){
-			System.out.print(tablero[i] + "\n");
-		}
+	private void initializeData(){
+		this.turnCounter = 0;
+		this.answer = new Solution();
+		this.win = false;
+		this.result = new Result[10];
 	}
 }

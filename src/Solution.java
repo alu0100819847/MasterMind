@@ -1,56 +1,46 @@
-public class Solution {
-	char [] alf_ = {'r', 'b', 'y', 'o', 'p', 'g'};
-	char [] answer = {' ', ' ', ' ', ' '};
-	char [] alf = {'r', 'b', 'y', 'o', 'p', 'g'};
+
+public class Solution extends Combination{
 	
 	public Solution(){
-
-		for (int i = 0; i < this.answer.length; i++) {
-			int posibleValueAssignment = (int) (Math.random() * this.alf.length);
-			
-			while(alf[posibleValueAssignment] == ' '){
-				posibleValueAssignment = (int) (Math.random() * this.alf.length);
-			}
-			this.answer[i] = this.alf[posibleValueAssignment];
-			alf[posibleValueAssignment] = ' ';
+		this.secuence = new Color[4];
+		char [] colorUsed = new char [Color.values().length];
+		System.out.println("------MASTER MIND------");
+		for (int i = 0; i < this.secuence.length; i++) {
+			int posibleValueAssignment;
+			do{
+				posibleValueAssignment = (int) (Math.random() * Color.values().length);
+				int colorPosition = 0;
+				for(Color color : Color.values()) {
+					if(colorPosition == posibleValueAssignment){
+						this.secuence[i] = color;
+					}
+					colorPosition++;
+				}
+			} while(colorUsed[posibleValueAssignment] == ' ');
+			colorUsed[posibleValueAssignment] = ' ';
 	    }
-		for (int i = 0; i < this.answer.length; i++) {
-			System.out.println(answer[i]);
+		for(int i = 0; i < secuence.length; i++) {
+			System.out.println(secuence[i]);
 		}
 	}
 	
-	public char [] check(String sim){
-		char [] result = {' ', ' ', ' ', ' '} ;
-		if(sim.length() != this.answer.length) result[0] = '*';
-		int counter = 0;
-		int winCounter = 0;
-		for(int i = 0; i < this.answer.length; i++){
-			for(int j = 0; j < this.answer.length; j++){
-				if(sim.charAt(i) == this.answer[j]){
+	public Result check(Attempt attempt){
+		int deadCounter = 0;
+		int hurtCounter = 0;
+		for(int i = 0; i < this.secuence.length; i++){
+			for(int j = 0; j < this.secuence.length; j++){
+				if(attempt.getSecuence(i) == this.secuence[j]){
 					if(i == j){
-						result[counter] = 'D';
-						winCounter++;
+						deadCounter++;
 					}
-						
-					else result[counter] = 'H';
-					counter++;
+					else{
+						hurtCounter++;
+					}
+
 				}
 			}
 		}
-		if(winCounter == 4) result[0] = 'w';
-		return result;
+		return new Result(deadCounter, hurtCounter);
 	}
 	
-	public boolean checkCharacters(String sim){
-		for(int i = 0; i < answer.length; i++){
-			
-			boolean result = false;
-			for(int j = 0; j< alf_.length; j++){
-
-				if(sim.charAt(i) == alf_[j]) result = true; 
-			}
-			if(!result) return false;
-		}
-		return true;
-	}
 }
