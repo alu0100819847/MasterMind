@@ -40,7 +40,7 @@ public class Solution extends Combination{
 				}
 			}
 		}
-		return new Result(deadCounter, hurtCounter);
+		return new Result(deadCounter, hurtCounter, attempt);
 	}
 	
 }

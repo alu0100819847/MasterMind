@@ -4,13 +4,14 @@ public class Attempt extends Combination{
 	int state;
 	
 	public Attempt(String input){
-		secuence = new Color[4];
+		this.secuence = new Color[4];
 		this.validateAttempt(input);
 		if(state == 0){
 			for(int i = 0; i < input.length(); i++){
 				for(Color color : Color.values()) {
-					if(color.name() == input.substring(i, i+1)){
-						secuence[i] = color;
+					
+					if(color.toString().equals( input.substring(i, i+1)) ){
+						this.secuence[i] = color;
 					}
 				}
 			}

@@ -20,9 +20,13 @@ En esta primera versión, definimos 3 clases:
 Segunda versión
 ~~~~~~~~~~~~~~~
 
-image:img/uml_2.png["uml"]
+image:img/uml_2.png["uml 2"]
 
 1. El primer cambio realizado en esta versión es la eliminación de la clase color. Esta clase fue creada con la suposición de que un color desempeñaría más funciones en un futuro, por lo que estaría cometiendo una generalidad especulativa. Esta clase es sustituida por simples caracteres.
 2. El siguiente cambio es un pequeño añadido que faltó a la primera versión, el registro del tablero. Esta funcionalidad es añadida a la clase game.
 3. En el constructor de la clase solution, se usaba una variable temporal denominada "temp" para  encontrar posibles asignaciones a la solución del juego. Esta variable local ha sido sustituida por una más descriptiva: "posibleValueAssignment".
 4. En el método turn() de la clase game, se definía un array "winCondition" que finalmente no era utilizado y por tanto es código muerto. Este array es eliminado
+
+Tercera versión
+~~~~~~~~~~~~~~~
+image:img/uml_3.png["uml 3"]

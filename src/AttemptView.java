@@ -8,10 +8,12 @@ public class AttemptView {
 		validateCodes.put("1", "Wrong characters. Use: r, b, y, o, p, g");
 		validateCodes.put("2", "Wrong length word");
 	}
+	
 	public String readAttempt(){
+		System.out.print("\nEnter 4 characters word: ");
 		Scanner inp = new Scanner(System.in);
 	    String attempt = inp.nextLine();
-	    inp.close();
+
 		return attempt;
 	}
 	

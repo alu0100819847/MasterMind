@@ -2,14 +2,16 @@
 public class Result {
 	int dead;
 	int hurt;
+	Attempt attempt;
 	
-	public Result(int dead, int hurt){
+	public Result(int dead, int hurt, Attempt attempt){
 		this.dead = dead;
 		this.hurt = hurt;
+		this.attempt = attempt;
 	}
 	
 	public boolean win(){
-		if(dead == 4){
+		if(this.dead == 4){
 			return true;
 		}
 		return false;
@@ -20,5 +22,9 @@ public class Result {
 	
 	public int getHurt(){
 		return hurt;
+	}
+	
+	public Attempt getAttempt(){
+		return attempt;
 	}
 }

@@ -15,15 +15,8 @@ public class Game {
 		this.initializeData();
 		gameView.printSecretCombination();
 		this.turn(gameView);
-		
-		Scanner inp = new Scanner(System.in);
-		System.out.println("\nDo you want to play again?");
-		System.out.print("\n1- Play Again.");
-		System.out.print("\n0- Exit.");
-		System.out.print("\nOption: ");
-	    String input = inp.nextLine();
-	    
-		switch(input) {
+	   
+		switch(gameView.printMenu()) {
 		  case "1":
 			  this.start();
 		    break;
@@ -37,8 +30,6 @@ public class Game {
 	private void turn(GameView gameView){	
 		if(turnCounter == 10) gameView.lose();
 		else{
-			
-			this.printTable();
 			gameView.printTurnInformation(this.turnCounter);	    
 		    Attempt attempt = new Attempt(gameView.readAttempt());
 		    if(attempt.getState() != 0){
@@ -47,11 +38,9 @@ public class Game {
 		    else{
 		    	this.result[turnCounter] = this.answer.check(attempt);
 
-		    	if(!this.result[turnCounter].win()){
-		    		for(int i = 0; i < this.turnCounter; i++){
-		    			System.out.println("tablero");
-		    		}
+		    	if(!this.result[turnCounter].win()){    		
 		    		this.turnCounter++;
+		    		gameView.printResults(this.result, this.turnCounter);
 		    		this.turn(gameView);
 		    	} else {
 		    		this.win = true;
