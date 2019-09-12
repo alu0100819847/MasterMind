@@ -15,16 +15,7 @@ public class Game {
 		this.initializeData();
 		gameView.printSecretCombination();
 		this.turn(gameView);
-	   
-		switch(gameView.printMenu()) {
-		  case "1":
-			  this.start();
-		    break;
-		  case "0":
-		    break;
-		  default:
-			  break;
-		}
+		this.menu(gameView);
 	}
 	
 	private void turn(GameView gameView){	
@@ -55,5 +46,17 @@ public class Game {
 		this.answer = new Solution();
 		this.win = false;
 		this.result = new Result[10];
+	}
+	
+	private void menu(GameView gameView){
+		switch(gameView.menu()) {
+		  case "1":
+			  this.start();
+		    break;
+		  case "0":
+		    break;
+		  default:
+			  break;
+		}
 	}
 }

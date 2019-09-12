@@ -4,7 +4,6 @@ public class Solution extends Combination{
 	public Solution(){
 		this.secuence = new Color[4];
 		char [] colorUsed = new char [Color.values().length];
-		System.out.println("------MASTER MIND------");
 		for (int i = 0; i < this.secuence.length; i++) {
 			int posibleValueAssignment;
 			do{
@@ -36,7 +35,6 @@ public class Solution extends Combination{
 					else{
 						hurtCounter++;
 					}
-
 				}
 			}
 		}

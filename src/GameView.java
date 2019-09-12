@@ -46,7 +46,7 @@ public class GameView {
 		}
 	}
 	
-	public String printMenu(){
+	public String menu(){
 		Scanner inp = new Scanner(System.in);
 		System.out.println("\nDo you want to play again?");
 		System.out.print("\n1- Play Again.");

@@ -13,7 +13,6 @@ public class AttemptView {
 		System.out.print("\nEnter 4 characters word: ");
 		Scanner inp = new Scanner(System.in);
 	    String attempt = inp.nextLine();
-
 		return attempt;
 	}
 	
