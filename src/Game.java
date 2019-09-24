@@ -18,16 +18,13 @@ public class Game {
 		this.result = new ArrayList<Result>();
 	}
 	
-	public int nextAttempt(String attemptInput){	
+	public void nextAttempt(String attemptInput){	
 		Attempt attempt = new Attempt(attemptInput);
-	    if(attempt.getState() == 0){
-	    	this.result.add(this.solution.check(attempt));
-	    	if(!this.result.get(this.result.size()-1).win()){    		
-	    	} else {
-	    		this.win = true;
-	    	}
-	    }
-		return attempt.getState();
+    	this.result.add(this.solution.check(attempt));
+    	if(!this.result.get(this.result.size()-1).win()){    		
+    	} else {
+    		this.win = true;
+    	}
 	}
 	
 	public boolean isWon(){

@@ -25,12 +25,11 @@ public class GameView {
 			this.solutionView.printSecretCombination();
 			this.printResults(this.game.getResult());
 			this.printAttemptNumberInformation(game.getAttemptNumber());
-			int stateCode = this.game.nextAttempt(this.attemptView.readAttempt());
+			this.game.nextAttempt(this.attemptView.readAttempt());
 			finished = game.isWon();
 		} while(!finished && game.getAttemptNumber()<10);
 		this.winLose();
 		this.menuOption();
-		
 	}
 	
 	private void headGame(){
