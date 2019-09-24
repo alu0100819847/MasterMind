@@ -1,0 +1,183 @@
+@startuml
+class MasterMind{
+
+    - Game game
+
+    - GameView gameView
+
+    + MasterMind()
+
+    - void play()
+
+    + static void main(String[] args)
+
+}
+
+class Game{
+
+    - Solution solution
+
+    - boolean win
+
+    - ArrayList<Result> result
+
+    + Game()
+
+    + void start()
+
+    + void nextAttempt(String attemptInput)
+
+    + boolean isWon()
+
+    + ArrayList<Result> getResult()
+
+    + int getAttemptNumber()
+
+}
+
+class Combination{
+
+    # Color [] combination
+
+}
+
+class Solution{
+
+    + Solution()
+
+    + Result check(Attempt attempt)
+
+}
+
+class Attempt{
+
+    + Attempt(String input)
+
+    + Color getCombination(int position)
+
+}
+
+class Result{
+
+    - int dead
+
+	- int hurt
+
+	- Attempt attempt
+
+    + Result(int dead, int hurt, Attempt attempt)
+
+    + boolean win()
+
+    + int getDead()
+
+    + int getHurt()
+
+    + Attempt getAttempt()
+
+}
+
+class GameView{
+
+	- SolutionView solutionView
+
+	- AttemptView attemptView
+
+	- ResultView resultView
+
+	- Game game
+
+    + GameView(Game game)
+
+    + void play()
+
+    - void headGame()
+
+    - void printSecretCombination()
+
+    - void printAttemptNumberInformation(int turns)
+
+    - String readAttempt()
+
+    - void winLose()
+
+    - void printResults(ArrayList<Result> result)
+
+    - void menuOption()
+
+    - void menuSelection(String option)
+
+    - void clear()
+}
+
+class SolutionView{
+
+    + SolutionView()
+
+    + void printSecretCombination()
+
+}
+
+class AttemptView{
+
+    - HashMap<String, String> validateCodes
+
+    + AttemptView()
+
+    + String readAttempt()
+
+    - boolean checkAttempt(String attempt)
+
+}
+
+class ResultView{
+
+    + ResultView()
+
+    + printResult(Result result)
+
+}
+
+enum Color{
+    r,
+    b,
+    y,
+    o,
+    p,
+    g
+}
+MasterMind *--GameView
+
+MasterMind *-- Game
+
+Game *-- Solution
+
+Game *-- Attempt
+
+Game *-- Result
+
+Combination *-- Color
+
+Solution --|> Combination
+
+Solution ..> Result
+
+Solution ..> Attempt
+
+Attempt --|> Combination
+
+GameView *-- SolutionView
+
+GameView *-- AttemptView
+
+GameView *-- ResultView
+
+GameView --> Game
+
+GameView ..> Result
+
+AttemptView ..> Color
+
+ResultView ..> Result
+
+@enduml
