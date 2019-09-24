@@ -1,3 +1,4 @@
+package views;
 
 public class SolutionView {
 	

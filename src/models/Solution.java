@@ -1,5 +1,11 @@
+package models;
 
-public class Solution extends Combination{
+import models.Attempt;
+import models.Color;
+import models.Combination;
+import models.Result;
+
+public class Solution extends Combination {
 	
 	public Solution(){
 		this.combination = new Color[4];

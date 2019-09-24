@@ -1,3 +1,6 @@
+package models;
+
+import models.Attempt;
 
 public class Result {
 	

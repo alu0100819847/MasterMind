@@ -1,3 +1,7 @@
+package views;
+
+import models.Color;
+
 import java.util.Scanner;
 
 import java.util.HashMap;

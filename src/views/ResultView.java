@@ -1,3 +1,7 @@
+package views;
+
+import models.Attempt;
+import models.Result;
 
 public class ResultView {
 	

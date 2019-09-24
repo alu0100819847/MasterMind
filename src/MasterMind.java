@@ -1,3 +1,6 @@
+import models.Game;
+import views.GameView;
+
 public class MasterMind {
 	
 	private Game game;

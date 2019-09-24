@@ -1,5 +1,6 @@
+package models;
 
-public class Attempt extends Combination{
+public class Attempt extends Combination {
 	
 	public Attempt(String input){
 		this.combination = new Color[4];

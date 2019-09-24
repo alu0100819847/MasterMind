@@ -1,3 +1,8 @@
+package views;
+
+import models.Game;
+import models.Result;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
