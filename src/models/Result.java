@@ -1,19 +1,14 @@
 package models;
 
-import models.Attempt;
-
 public class Result {
 	
 	private int dead;
 	
 	private int hurt;
 	
-	private Attempt attempt;
-	
-	public Result(int dead, int hurt, Attempt attempt){
+	public Result(int dead, int hurt){
 		this.dead = dead;
 		this.hurt = hurt;
-		this.attempt = attempt;
 	}
 	
 	public boolean win(){
@@ -30,8 +25,6 @@ public class Result {
 		return hurt;
 	}
 	
-	public Attempt getAttempt(){
-		return attempt;
-	}
+
 	
 }

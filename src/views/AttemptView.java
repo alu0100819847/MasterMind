@@ -1,14 +1,12 @@
 package views;
 
 import models.Color;
+import models.Attempt;
 
 import java.util.Scanner;
 
-import java.util.HashMap;
-
 public class AttemptView {
-	
-	private HashMap<String, String> validateCodes;
+
 	
 	public AttemptView(){
 
@@ -23,7 +21,7 @@ public class AttemptView {
 	    			System.out.println("Wrong length word");
 	    		}
 	    		else{
-	    			System.out.println("Wrong characters. Use: r, b, y, o, p, g");
+	    			System.out.println("Wrong characters. Use: "+ Color.all);
 	    		}
 	    	}
 			System.out.print("\nEnter 4 characters word: ");
@@ -53,5 +51,13 @@ public class AttemptView {
     	}
     	return false;
 	}
-	
+
+	public void printResult(Attempt attempt){
+		ResultView resultView = new ResultView(attempt.getResult());
+		String attemptCombination = "";
+		for(int i = 0; i < 4; i++){
+			attemptCombination += attempt.getCombination(i);
+		}
+		System.out.println(attemptCombination + " --> " + resultView.getImprimibleResult());
+	}
 }

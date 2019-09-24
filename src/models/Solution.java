@@ -1,32 +1,27 @@
 package models;
 
-import models.Attempt;
-import models.Color;
-import models.Combination;
-import models.Result;
-
 public class Solution extends Combination {
 	
 	public Solution(){
 		this.combination = new Color[4];
 		char [] colorUsed = new char [Color.values().length];
 		for (int i = 0; i < this.combination.length; i++) {
-			int posibleValueAssignment;
+			int possibleValueAssignment;
 			do{
-				posibleValueAssignment = (int) (Math.random() * Color.values().length);
+				possibleValueAssignment = (int) (Math.random() * Color.values().length);
 				int colorPosition = 0;
 				for(Color color : Color.values()) {
-					if(colorPosition == posibleValueAssignment){
+					if(colorPosition == possibleValueAssignment){
 						this.combination[i] = color;
 					}
 					colorPosition++;
 				}
-			} while(colorUsed[posibleValueAssignment] == ' ');
-			colorUsed[posibleValueAssignment] = ' ';
+			} while(colorUsed[possibleValueAssignment] == ' ');
+			colorUsed[possibleValueAssignment] = ' ';
 	    }
 	}
 	
-	public Result check(Attempt attempt){
+	public Attempt check(Attempt attempt){
 		int deadCounter = 0;
 		int hurtCounter = 0;
 		for(int i = 0; i < this.combination.length; i++){
@@ -41,7 +36,8 @@ public class Solution extends Combination {
 				}
 			}
 		}
-		return new Result(deadCounter, hurtCounter, attempt);
+		attempt.setResult(new Result(deadCounter, hurtCounter));
+		return attempt;
 	}
 	
 }

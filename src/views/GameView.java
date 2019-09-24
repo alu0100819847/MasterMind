@@ -1,7 +1,7 @@
 package views;
 
 import models.Game;
-import models.Result;
+import models.Attempt;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -12,14 +12,11 @@ public class GameView {
 	
 	private AttemptView attemptView;
 	
-	private ResultView resultView;
-	
 	private Game game;
 	
 	public GameView(Game game){
 		this.solutionView = new SolutionView();
 		this.attemptView = new AttemptView();
-		this.resultView = new ResultView();	
 		this.game = game;
 	}
 	
@@ -41,19 +38,10 @@ public class GameView {
 		System.out.println("------MASTER MIND------");
 		
 	}
-	
-	private void printSecretCombination(){
-		this.solutionView.printSecretCombination();
-	}
-	
+
 	private void printAttemptNumberInformation(int attemptNumber){
 		System.out.println("\nIntento: " + attemptNumber);
 	}
-	
-	private String readAttempt(){
-		return this.attemptView.readAttempt();
-	}
-	
 	
 	private void winLose(){
 		if(this.game.isWon()){
@@ -64,9 +52,9 @@ public class GameView {
 		}
 	}
 	
-	private void printResults(ArrayList<Result> result){
+	private void printResults(ArrayList<Attempt> result){
 		for(int i = 0; i < result.size(); i++){
-			this.resultView.printResult(result.get(i));
+			this.attemptView.printResult(result.get(i));
 		}
 	}
 	
@@ -96,7 +84,6 @@ public class GameView {
 	private void clear(){
 		this.solutionView = new SolutionView();
 		this.attemptView = new AttemptView();
-		this.resultView = new ResultView();	
 		this.game.start();
 	}
 	

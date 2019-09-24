@@ -1,21 +1,16 @@
 package views;
 
-import models.Attempt;
 import models.Result;
 
 public class ResultView {
-	
-	public ResultView(){
-		
+	private Result result;
+
+	public ResultView(Result result){
+		this.result = result;
 	}
 	
-	public void printResult(Result result){
-		Attempt attempt = result.getAttempt();
-		String attemptCombination = "";
-		for(int i = 0; i < 4; i++){
-			attemptCombination += attempt.getCombination(i);
-		}
-		System.out.println(attemptCombination + " --> " + result.getDead() + " Deads " + result.getHurt() + " Hurts");
+	public String getImprimibleResult(){
+		return this.result.getDead() +" Deads " + this.result.getHurt() + " Hurts";
 	}
 	
 }

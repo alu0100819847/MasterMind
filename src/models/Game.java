@@ -1,7 +1,5 @@
 package models;
 
-import models.Attempt;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -10,7 +8,7 @@ public class Game {
 	
 	private boolean win;
 	
-	private ArrayList<Result> result;
+	private ArrayList<Attempt> result;
 	
 	public Game(){
 		this.start();
@@ -19,13 +17,13 @@ public class Game {
 	public void start(){
 		this.solution = new Solution();
 		this.win = false;
-		this.result = new ArrayList<Result>();
+		this.result = new ArrayList<Attempt>();
 	}
 	
 	public void nextAttempt(String attemptInput){	
 		Attempt attempt = new Attempt(attemptInput);
     	this.result.add(this.solution.check(attempt));
-    	if(!this.result.get(this.result.size()-1).win()){    		
+    	if(!this.result.get(this.result.size()-1).getResult().win()){
     	} else {
     		this.win = true;
     	}
@@ -35,7 +33,7 @@ public class Game {
 		return this.win;
 	}
 	
-	public ArrayList<Result> getResult(){
+	public ArrayList<Attempt> getResult(){
 		return this.result;
 	}
 	
