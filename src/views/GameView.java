@@ -1,12 +1,13 @@
 package views;
 
+import controller.gameController;
 import models.Game;
 import models.Attempt;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class GameView {
+public class GameView implements gameController {
 	
 	private SolutionView solutionView;
 	

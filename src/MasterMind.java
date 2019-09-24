@@ -1,3 +1,4 @@
+import controller.gameController;
 import models.Game;
 import views.GameView;
 
@@ -5,15 +6,15 @@ public class MasterMind {
 	
 	private Game game;
 	
-	private GameView gameView;
+	private gameController gameController;
 	
 	public MasterMind(){
 		this.game = new Game();
-		this.gameView = new GameView(game);
+		this.gameController = new GameView(game);
 	}
 	
 	private void play(){
-		this.gameView.play();
+		this.gameController.play();
 	}
 	
 	public static void main(String[] args) {	
