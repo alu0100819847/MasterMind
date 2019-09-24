@@ -1,4 +1,4 @@
-import controller.gameController;
+import controller.GameController;
 import models.Game;
 import views.GameView;
 
@@ -6,7 +6,7 @@ public class MasterMind {
 	
 	private Game game;
 	
-	private gameController gameController;
+	private GameController gameController;
 	
 	public MasterMind(){
 		this.game = new Game();

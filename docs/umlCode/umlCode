@@ -80,6 +80,10 @@ class Result{
 
 }
 
+class GameController{
+    + void play()
+}
+
 class GameView{
 
 	- SolutionView solutionView
@@ -145,7 +149,7 @@ enum Color{
     g,
     all
 }
-MasterMind *--GameView
+MasterMind *--GameController
 
 MasterMind *-- Game
 
@@ -164,6 +168,8 @@ Solution ..> Attempt
 Attempt --|> Combination
 
 Attempt *-- Result
+
+GameView --|> GameController
 
 GameView *-- SolutionView
 
