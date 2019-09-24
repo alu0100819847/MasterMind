@@ -1,14 +1,17 @@
 
 public class ResultView {
+	
 	public ResultView(){
 		
 	}
+	
 	public void printResult(Result result){
 		Attempt attempt = result.getAttempt();
-		String attemptSecuence = "";
+		String attemptCombination = "";
 		for(int i = 0; i < 4; i++){
-			attemptSecuence += attempt.getSecuence(i);
+			attemptCombination += attempt.getCombination(i);
 		}
-		System.out.println(attemptSecuence + " --> " + result.getDead() + " Deads " + result.getHurt() + " Hurts");
+		System.out.println(attemptCombination + " --> " + result.getDead() + " Deads " + result.getHurt() + " Hurts");
 	}
+	
 }

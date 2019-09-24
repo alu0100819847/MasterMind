@@ -1,17 +1,17 @@
 
 public class Attempt extends Combination{
 	
-	int state;
+	private int state;
 	
 	public Attempt(String input){
-		this.secuence = new Color[4];
+		this.combination = new Color[4];
 		this.validateAttempt(input);
 		if(state == 0){
 			for(int i = 0; i < input.length(); i++){
 				for(Color color : Color.values()) {
 					
 					if(color.toString().equals( input.substring(i, i+1)) ){
-						this.secuence[i] = color;
+						this.combination[i] = color;
 					}
 				}
 			}
@@ -27,7 +27,7 @@ public class Attempt extends Combination{
 				boolean exist = false;
 				for(Color color : Color.values()){
 					if(color.name() == attempt.substring(i, i+1)){
-						secuence[i] = color;
+						combination[i] = color;
 						exist = true;
 					}
 					if(!exist){
@@ -43,7 +43,8 @@ public class Attempt extends Combination{
 		return this.state;
 	}
 	
-	public Color getSecuence(int position){
-		return secuence[position];
+	public Color getCombination(int position){
+		return combination[position];
 	}
+	
 }

@@ -1,8 +1,11 @@
 
 public class Result {
-	int dead;
-	int hurt;
-	Attempt attempt;
+	
+	private int dead;
+	
+	private int hurt;
+	
+	private Attempt attempt;
 	
 	public Result(int dead, int hurt, Attempt attempt){
 		this.dead = dead;
@@ -27,4 +30,5 @@ public class Result {
 	public Attempt getAttempt(){
 		return attempt;
 	}
+	
 }
