@@ -37,20 +37,20 @@ public class GameView {
 		
 	}
 	
-	public void printSecretCombination(){
+	private void printSecretCombination(){
 		this.solutionView.printSecretCombination();
 	}
 	
-	public void printAttemptNumberInformation(int attemptNumber){
+	private void printAttemptNumberInformation(int attemptNumber){
 		System.out.println("\nIntento: " + attemptNumber);
 	}
 	
-	public String readAttempt(){
+	private String readAttempt(){
 		return this.attemptView.readAttempt();
 	}
 	
 	
-	public void winLose(){
+	private void winLose(){
 		if(this.game.isWon()){
 			System.out.print("YOU WIN!!!");
 		}
@@ -59,13 +59,13 @@ public class GameView {
 		}
 	}
 	
-	public void printResults(ArrayList<Result> result){
+	private void printResults(ArrayList<Result> result){
 		for(int i = 0; i < result.size(); i++){
 			this.resultView.printResult(result.get(i));
 		}
 	}
 	
-	public void menuOption(){
+	private void menuOption(){
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Do you want to play again?");
 		System.out.println("1- Play Again.");
@@ -75,7 +75,7 @@ public class GameView {
 	    System.out.println();
 	}
 	
-	public void menuSelection(String option){
+	private void menuSelection(String option){
 		switch(option) {
 		  case "1":
 			  clear();
