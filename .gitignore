@@ -9,6 +9,6 @@ target
 
 .classpath
 
-./bin
+bin
 
 .settings
