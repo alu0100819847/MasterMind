@@ -8,7 +8,7 @@ public class Game {
 	
 	private boolean win;
 	
-	private ArrayList<Attempt> result;
+	private ArrayList<Attempt> attempt;
 	
 	public Game(){
 		this.start();
@@ -17,13 +17,13 @@ public class Game {
 	public void start(){
 		this.solution = new Solution();
 		this.win = false;
-		this.result = new ArrayList<Attempt>();
+		this.attempt = new ArrayList<Attempt>();
 	}
 	
 	public void nextAttempt(String attemptInput){	
 		Attempt attempt = new Attempt(attemptInput);
-    	this.result.add(this.solution.check(attempt));
-    	if(!this.result.get(this.result.size()-1).getResult().win()){
+    	this.attempt.add(this.solution.check(attempt));
+    	if(!this.attempt.get(this.attempt.size()-1).getResult().win()){
     	} else {
     		this.win = true;
     	}
@@ -33,12 +33,12 @@ public class Game {
 		return this.win;
 	}
 	
-	public ArrayList<Attempt> getResult(){
-		return this.result;
+	public ArrayList<Attempt> getAttempt(){
+		return this.attempt;
 	}
 	
 	public int getAttemptNumber(){
-		return result.size();
+		return attempt.size();
 	}
 	
 }

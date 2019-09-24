@@ -25,7 +25,7 @@ public class GameView {
 		boolean finished = false;
 		do{
 			this.solutionView.printSecretCombination();
-			this.printResults(this.game.getResult());
+			this.printResults(this.game.getAttempt());
 			this.printAttemptNumberInformation(game.getAttemptNumber());
 			this.game.nextAttempt(this.attemptView.readAttempt());
 			finished = game.isWon();
