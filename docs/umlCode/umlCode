@@ -1,7 +1,8 @@
 @startuml
+
 class MasterMind{
 
-    - Game game
+    - Logic logic
 
     - GameView gameView
 
@@ -80,8 +81,8 @@ class Result{
 
 }
 
-class GameController{
-    + void play()
+interface View{
+    void interact(Controller controller)
 }
 
 class GameView{
@@ -90,15 +91,11 @@ class GameView{
 
 	- AttemptView attemptView
 
-	- Game game
-
-    + GameView(Game game)
-
-    + void play()
+    + GameView(Logic logic)
 
     - void headGame()
 
-    - void printAttemptNumberInformation(int turns)
+    - void printAttemptNumberInformation(int attemptNumber)
 
     - void winLose()
 
@@ -106,9 +103,14 @@ class GameView{
 
     - void menuOption()
 
-    - void menuSelection(String option)
+    + void visit(GameController controller)
 
-    - void clear()
+    + void visit(SolutionController controller)
+
+    + void visit(AttemptController controller)
+
+    + void interact(Controller controller)
+
 }
 
 class SolutionView{
@@ -149,9 +151,115 @@ enum Color{
     g,
     all
 }
+
+interface ControllerVisitor{
+
+    void visit(GameController gameController)
+
+    void visit(SolutionController solutionController)
+
+    void visit(AttemptController attemptController)
+
+}
+
+abstract Controller {
+
+    # State state
+
+    + Controller(State state)
+
+    + void next()
+
+    + abstract void accept(ControllerVisitor controllerVisitor)
+
+}
+
+
+class GameController {
+
+    + GameController(State state)
+
+    + void start()
+
+    + boolean isWon()
+
+    + ArrayList<Attempt> getAttempt()
+
+    + int getAttemptNumber()
+
+    + void accept(ControllerVisitor controllerVisitor)
+
+    + int getStateValue()
+
+    - void reset()
+
+}
+
+class AttemptController {
+
+    + AttemptController(State state)
+
+}
+
+class SolutionController {
+
+    + SolutionController(State state)
+
+}
+
+class Logic {
+
+    - Map<StateValue, Controller> acceptorController
+
+    - State state
+
+    + Logic()
+
+    + Controller getController()
+
+}
+
+class State {
+
+    - StateValue stateValue
+
+    - Game game
+
+    + State()
+
+    + void next()
+
+    + void reset()
+
+    + void iterate()
+
+    + StateValue getValueState
+
+    + Game getGame()
+
+}
+
+enum StateValue {
+
+    initialize,
+
+    printSolution,
+
+    printResult,
+
+    nextAttempt,
+
+    gameEnd,
+
+    exit
+
+}
+
 MasterMind *--GameView
 
-MasterMind *-- Game
+MasterMind *-- Logic
+
+MasterMind --> Controller
 
 Game *-- Solution
 
@@ -169,19 +277,66 @@ Attempt --|> Combination
 
 Attempt *-- Result
 
+View --|> ControllerVisitor
+
+View ..> Controller
 
 GameView *-- SolutionView
 
 GameView *-- AttemptView
 
-GameView --> Game
-
 GameView ..> Result
+
+GameView ..> GameController
+
+GameView ..> AttemptController
+
+GameView ..> SolutionController
+
+GameView --|> View
+
+SolutionView ..> Color
 
 AttemptView ..> Color
 
 AttemptView ..> Attempt
 
 ResultView ..> Result
+
+ControllerVisitor ..> GameController
+
+ControllerVisitor ..> SolutionController
+
+ControllerVisitor ..> AttemptController
+
+Controller *-- State
+
+Controller ..> ControllerVisitor
+
+GameController --|> Controller
+
+GameController ..> Attempt
+
+AttemptController --|> Controller
+
+SolutionController --|> Controller
+
+Logic --> GameController
+
+Logic --> AttemptController
+
+Logic --> SolutionController
+
+Logic *-- State
+
+Logic *-- StateValue
+
+Logic *-- Controller
+
+Logic ..> StateValue
+
+State *-- Game
+
+State *--StateValue
 
 @enduml

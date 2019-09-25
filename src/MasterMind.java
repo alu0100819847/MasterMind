@@ -1,7 +1,5 @@
 import controller.Controller;
-import controller.GameController;
 import controller.Logic;
-import models.Game;
 import views.GameView;
 
 public class MasterMind {
@@ -12,7 +10,7 @@ public class MasterMind {
 	
 	public MasterMind(){
 		this.logic = new Logic();
-		this.gameView = new GameView(logic);
+		this.gameView = new GameView();
 	}
 	
 	private void play(){

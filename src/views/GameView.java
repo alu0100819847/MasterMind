@@ -1,11 +1,7 @@
 package views;
-
 import controller.*;
-
 import models.Attempt;
-
 import java.util.Scanner;
-
 import java.util.ArrayList;
 
 public class GameView implements View {
@@ -14,14 +10,13 @@ public class GameView implements View {
 	
 	private AttemptView attemptView;
 	
-	public GameView(Logic logic){
+	public GameView(){
 		this.solutionView = new SolutionView();
 		this.attemptView = new AttemptView();
 	}
 	
 	private void headGame(){
 		System.out.println("------MASTER MIND------");
-		
 	}
 
 	private void printAttemptNumberInformation(int attemptNumber){
@@ -48,9 +43,9 @@ public class GameView implements View {
 		System.out.println("1- Play Again.");
 		System.out.println("0- Exit.");
 		System.out.print("Option: ");
-	    String input = inp.nextLine();
-	    System.out.println();
-	    return input;
+		String input = inp.nextLine();
+		System.out.println();
+		return input;
 	}
 
 	@Override
@@ -93,5 +88,5 @@ public class GameView implements View {
 	public void interact(Controller controller) {
 		controller.accept(this);
 	}
-	
+
 }
