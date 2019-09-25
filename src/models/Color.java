@@ -1,13 +1,21 @@
 package models;
 
 public enum Color {
+
 	r,
+
 	b,
+
 	y,
+
 	o,
+
 	p,
+
 	g,
+
 	all{
+
 		@Override
 		public String toString() {
 			String allColor = "";
@@ -20,7 +28,5 @@ public enum Color {
 		}
 
 	}
-
-
 
 }

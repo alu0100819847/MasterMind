@@ -11,7 +11,7 @@ public class Game {
 	private ArrayList<Attempt> attempt;
 	
 	public Game(){
-		this.start();
+		
 	}
 	
 	public void start(){

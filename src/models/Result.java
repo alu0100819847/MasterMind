@@ -24,7 +24,5 @@ public class Result {
 	public int getHurt(){
 		return hurt;
 	}
-	
 
-	
 }

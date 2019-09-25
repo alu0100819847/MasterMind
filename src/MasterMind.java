@@ -1,20 +1,28 @@
+import controller.Controller;
 import controller.GameController;
+import controller.Logic;
 import models.Game;
 import views.GameView;
 
 public class MasterMind {
 	
-	private Game game;
+	private Logic logic;
 	
-	private GameController gameController;
+	private GameView gameView;
 	
 	public MasterMind(){
-		this.game = new Game();
-		this.gameController = new GameView(game);
+		this.logic = new Logic();
+		this.gameView = new GameView(logic);
 	}
 	
 	private void play(){
-		this.gameController.play();
+		Controller controller;
+		do {
+			controller = this.logic.getController();
+			if (controller != null) {
+				this.gameView.interact(controller);
+			}
+		} while (controller != null);
 	}
 	
 	public static void main(String[] args) {	

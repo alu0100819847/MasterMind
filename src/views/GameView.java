@@ -1,38 +1,22 @@
 package views;
 
-import controller.GameController;
-import models.Game;
+import controller.*;
+
 import models.Attempt;
 
 import java.util.Scanner;
+
 import java.util.ArrayList;
 
-public class GameView implements GameController {
+public class GameView implements View {
 	
 	private SolutionView solutionView;
 	
 	private AttemptView attemptView;
 	
-	private Game game;
-	
-	public GameView(Game game){
+	public GameView(Logic logic){
 		this.solutionView = new SolutionView();
 		this.attemptView = new AttemptView();
-		this.game = game;
-	}
-	
-	public void play(){
-		this.headGame();
-		boolean finished = false;
-		do{
-			this.solutionView.printSecretCombination();
-			this.printResults(this.game.getAttempt());
-			this.printAttemptNumberInformation(game.getAttemptNumber());
-			this.game.nextAttempt(this.attemptView.readAttempt());
-			finished = game.isWon();
-		} while(!finished && game.getAttemptNumber()<10);
-		this.winLose();
-		this.menuOption();
 	}
 	
 	private void headGame(){
@@ -44,12 +28,11 @@ public class GameView implements GameController {
 		System.out.println("\nIntento: " + attemptNumber);
 	}
 	
-	private void winLose(){
-		if(this.game.isWon()){
-			System.out.print("YOU WIN!!!");
-		}
-		else{
-			System.out.print("YOU LOSE!!!");
+	private void winLose(boolean win){
+		if(win){
+			System.out.println("YOU WIN!!!");
+		} else {
+			System.out.println("YOU LOSE!!!");
 		}
 	}
 	
@@ -59,33 +42,56 @@ public class GameView implements GameController {
 		}
 	}
 	
-	private void menuOption(){
+	private String menuOption(){
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Do you want to play again?");
 		System.out.println("1- Play Again.");
 		System.out.println("0- Exit.");
 		System.out.print("Option: ");
-	    menuSelection(inp.nextLine());
+	    String input = inp.nextLine();
 	    System.out.println();
+	    return input;
 	}
-	
-	private void menuSelection(String option){
-		switch(option) {
-		  case "1":
-			  clear();
-			  this.play();
-		    break;
-		  case "0":
-		    break;
-		  default:
-			  break;
+
+	@Override
+	public void visit(GameController controller){
+		if(controller.getStateValue() == 0){
+			this.headGame();
+			controller.start();
+			controller.next();
+		}
+		if(controller.getStateValue() == 2){
+			this.printAttemptNumberInformation(controller.getAttemptNumber()+1);
+			this.printResults(controller.getAttempt());
+			controller.next();
+		}
+		if(controller.getStateValue() == 4){
+			this.winLose(controller.isWon());
+			String option = this.menuOption();
+			if(option.equals("1")) {
+				controller.reset();
+				controller.getStateValue();
+			}
+			controller.next();
+
 		}
 	}
-	
-	private void clear(){
-		this.solutionView = new SolutionView();
-		this.attemptView = new AttemptView();
-		this.game.start();
+
+	@Override
+	public void visit(SolutionController solutionController) {
+		this.solutionView.printSecretCombination();
+		solutionController.next();
+	}
+
+	@Override
+	public void visit(AttemptController attemptController) {
+		attemptController.nextAttempt(this.attemptView.readAttempt());
+		attemptController.next();
+	}
+
+	@Override
+	public void interact(Controller controller) {
+		controller.accept(this);
 	}
 	
 }

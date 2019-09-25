@@ -8,7 +8,7 @@ public class Solution extends Combination {
 		for (int i = 0; i < this.combination.length; i++) {
 			int possibleValueAssignment;
 			do{
-				possibleValueAssignment = (int) (Math.random() * Color.values().length);
+				possibleValueAssignment = (int) (Math.random() * (Color.values().length-1));
 				int colorPosition = 0;
 				for(Color color : Color.values()) {
 					if(colorPosition == possibleValueAssignment){

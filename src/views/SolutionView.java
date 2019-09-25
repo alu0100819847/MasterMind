@@ -1,5 +1,7 @@
 package views;
+
 import models.Color;
+
 public class SolutionView {
 	
 	SolutionView(){
@@ -11,5 +13,5 @@ public class SolutionView {
 		System.out.println("SECRET: ****");
 		System.out.println("Possible colors: " + Color.all);
 	}
-	
+
 }

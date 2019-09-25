@@ -1,6 +1,7 @@
 package views;
 
 import models.Color;
+
 import models.Attempt;
 
 import java.util.Scanner;
@@ -60,4 +61,5 @@ public class AttemptView {
 		}
 		System.out.println(attemptCombination + " --> " + resultView.getImprimibleResult());
 	}
+
 }

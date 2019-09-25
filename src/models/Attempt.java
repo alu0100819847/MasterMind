@@ -1,6 +1,7 @@
 package models;
 
 public class Attempt extends Combination {
+
 	private Result result;
 
 	public Attempt(String input){
