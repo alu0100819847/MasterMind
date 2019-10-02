@@ -14,10 +14,11 @@ public class State {
     }
 
     public void next() {
+       final int MAXATTEMPTNUMBER = 10;
         if(this.stateValue.ordinal() < 3) {
             this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
         } else {
-            if(game.getAttemptNumber() < 10 && !game.isWon()){
+            if(game.getAttemptNumber() < MAXATTEMPTNUMBER && !game.isWon()){
                 this.iterate();
             } else{
                 this.stateValue = StateValue.values()[this.stateValue.ordinal() + 1];
