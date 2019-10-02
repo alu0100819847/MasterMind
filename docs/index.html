@@ -741,10 +741,7 @@ asciidoc.install();
 <div class="paragraph"><p>En este documento, se registrará la evolución en el desarrollo del juego Master Mind, comenzando con una primera versión sin conocimiento en profundidad de diseño de software.
 A partir de esta primera versión, se irán aplicando los distintos conceptos estudiados durante las clases.</p></div>
 <div class="sect2">
-<h3 id="_primera_versión">Primera versión</h3>
-<div class="paragraph"><p><span class="image">
-<img src="img/uml.png" alt="uml" />
-</span></p></div>
+<h3 id="_version_1_0">Version 1.0</h3>
 <div class="paragraph"><p>En esta primera versión, definimos 3 clases:</p></div>
 <div class="ulist"><ul>
 <li>
@@ -763,62 +760,127 @@ game. Define el curso del juego, incluyendo en ello sus iteraciones o la opción
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>Al concluir esta primera versión, encontramos que no tenemos un buen reparto de responsabilidades, con clases con múltiples motivos de cambio. Esto da lugar a un alto acomplamiento y a una baja cohesión.
+Además se usan nombres poco descriptivos y hay presencia de código muerto.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="img/uml.png" alt="uml" />
+</span></p></div>
 </div>
 <div class="sect2">
-<h3 id="_segunda_versión">Segunda versión</h3>
-<div class="paragraph"><p><span class="image">
-<img src="img/uml_2.png" alt="uml 2" />
-</span></p></div>
+<h3 id="_versión_1_1">Versión 1.1</h3>
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-El primer cambio realizado en esta versión es la eliminación de la clase color. Esta clase fue creada con la suposición de que un color desempeñaría más funciones en un futuro, por lo que estaría cometiendo una generalidad especulativa. Esta clase es sustituida por simples caracteres.
+Se sustituye la clase color por un enum, eliminando asi una clase perezosa.
 </p>
 </li>
 <li>
 <p>
-El siguiente cambio es un pequeño añadido que faltó a la primera versión, el registro del tablero. Esta funcionalidad es añadida a la clase game.
+Añado el registro de intentos.
 </p>
 </li>
 <li>
 <p>
-En el constructor de la clase solution, se usaba una variable temporal denominada "temp" para  encontrar posibles asignaciones a la solución del juego. Esta variable local ha sido sustituida por una más descriptiva: "posibleValueAssignment".
+Mejora de algunos nombres utilizados para variables.
 </p>
 </li>
 <li>
 <p>
-En el método turn() de la clase game, se definía un array "winCondition" que finalmente no era utilizado y por tanto es código muerto. Este array es eliminado
+Eliminación de código muerto.
 </p>
 </li>
 </ol></div>
+<div class="paragraph"><p>Hemos realizado algunas pequeñas mejoras, pero mantenemos las mismas deficiencias de calidad de código.</p></div>
+<div class="paragraph"><p><span class="image">
+<img src="img/uml_2.png" alt="uml 2" />
+</span></p></div>
 </div>
 <div class="sect2">
-<h3 id="_tercera_versión">Tercera versión</h3>
+<h3 id="_version_1_2">Version 1.2</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Se realiza la separación de responsabilidades y se dividen las clases aumentando la cohesión y disminuyendo el acoplamiento.
+</p>
+</li>
+<li>
+<p>
+División entre modelos y vistas.
+</p>
+</li>
+<li>
+<p>
+Mejora de selección de nombres de variables.
+</p>
+</li>
+<li>
+<p>
+Eliminación de código muerto.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>En esta tercera versión, mejora considerablemente la calidad del código. Obtenemos una jerarquía de clases con mucha cohesión y poco acoplamiento. Por otro lado, son los modelos los que controlan a las vistas.</p></div>
 <div class="paragraph"><p><span class="image">
 <img src="img/uml_3.png" alt="uml 3" />
 </span></p></div>
 </div>
 <div class="sect2">
-<h3 id="_cuarta_versión">Cuarta versión</h3>
+<h3 id="_versión_1_3">Versión 1.3</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Damos a las vistas control sobre los modelos.
+</p>
+</li>
+</ol></div>
 <div class="paragraph"><p><span class="image">
 <img src="img/uml_4.png" alt="uml 4" />
 </span></p></div>
 </div>
 <div class="sect2">
-<h3 id="_quinta_versión">Quinta versión</h3>
-<div class="paragraph"><p><span class="image">
+<h3 id="_versión_1_4">Versión 1.4</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Intercambiamos responsabilidades entre la clase Attempt y la clase Result. Ahora resultado es un componente de intento(Attempt).
+<span class="image">
 <img src="img/uml_5.png" alt="uml 5" />
-</span></p></div>
+</span>
+</p>
+</li>
+</ol></div>
 </div>
 <div class="sect2">
-<h3 id="_sexta_versión">Sexta versión</h3>
-<div class="paragraph"><p><span class="image">
-<img src="img/uml_6.png" alt="uml 6" />
-</span></p></div>
+<h3 id="_versón_1_5">Versón 1.5</h3>
+<div class="paragraph"><p>(Descartada)</p></div>
 </div>
 <div class="sect2">
-<h3 id="_septima_versión">Septima versión</h3>
-<div class="paragraph"><p><span class="image">
+<h3 id="_versión_1_6">Versión 1.6</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Separamos las distintas partes en paquetes.
+</p>
+</li>
+<li>
+<p>
+Añadimos controladores al diseño, que interactuarán entre los modelos y las vistas.
+</p>
+</li>
+<li>
+<p>
+Separamos el aspecto lógico de las vistas, que pasará a estar incluido en los controladores.
+</p>
+</li>
+<li>
+<p>
+Aplicamos la tecnica del doble despacho, evitando asi consultar el tipo de clase.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Con este último paso, terminamos de reducir el acoplamiento de las clases y aumentamos la cohesión.
+Gracias a la tecnica del doble despacho evitamos que se produzcan ciclos, y nos aseguramos de que a medida que se incremente el software no aumente el acoplamiento.
+<span class="image">
 <img src="img/uml_7.svg" alt="uml 6" />
 </span></p></div>
 </div>
@@ -828,7 +890,7 @@ En el método turn() de la clase game, se definía un array "winCondition" que f
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-09-25 22:35:54 CEST
+Last updated 2019-10-02 20:34:27 CEST
 </div>
 </div>
 </body>

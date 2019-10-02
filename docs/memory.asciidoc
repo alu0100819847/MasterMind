@@ -1,0 +1,74 @@
+Memoria
+-------
+
+En este documento, se registrará la evolución en el desarrollo del juego Master Mind, comenzando con una primera versión sin conocimiento en profundidad de diseño de software.
+A partir de esta primera versión, se irán aplicando los distintos conceptos estudiados durante las clases.
+
+Version 1.0
+~~~~~~~~~~~~
+
+En esta primera versión, definimos 3 clases:
+
+
+- color. Se encarga de definir un color, que más adelante formará las secuencias. Más adelante podría incorporar más información y funcionalidades, como guardar el código hexadecimal de su color.
+- solution. Genera la combinación de colores que da la victoria. Además comprueba las respuestas del jugador.
+- game. Define el curso del juego, incluyendo en ello sus iteraciones o la opción de volver a jugar.
+
+Al concluir esta primera versión, encontramos que no tenemos un buen reparto de responsabilidades, con clases con múltiples motivos de cambio. Esto da lugar a un alto acomplamiento y a una baja cohesión.
+Además se usan nombres poco descriptivos y hay presencia de código muerto.
+
+image:img/uml.png["uml"]
+
+
+
+Versión 1.1
+~~~~~~~~~~~~
+
+1. Se sustituye la clase color por un enum, eliminando asi una clase perezosa.
+2. Añado el registro de intentos.
+3. Mejora de algunos nombres utilizados para variables.
+4. Eliminación de código muerto.
+
+Hemos realizado algunas pequeñas mejoras, pero mantenemos las mismas deficiencias de calidad de código.
+
+image:img/uml_2.png["uml 2"]
+
+Version 1.2
+~~~~~~~~~~~~
+
+1. Se realiza la separación de responsabilidades y se dividen las clases aumentando la cohesión y disminuyendo el acoplamiento.
+2. División entre modelos y vistas.
+3. Mejora de selección de nombres de variables.
+4. Eliminación de código muerto.
+
+En esta tercera versión, mejora considerablemente la calidad del código. Obtenemos una jerarquía de clases con mucha cohesión y poco acoplamiento. Por otro lado, son los modelos los que controlan a las vistas.
+
+image:img/uml_3.png["uml 3"]
+
+Versión 1.3
+~~~~~~~~~~~
+1. Damos a las vistas control sobre los modelos.
+
+image:img/uml_4.png["uml 4"]
+
+Versión 1.4
+~~~~~~~~~~~
+
+1. Intercambiamos responsabilidades entre la clase Attempt y la clase Result. Ahora resultado es un componente de intento(Attempt).
+image:img/uml_5.png["uml 5"]
+
+Versón 1.5
+~~~~~~~~~~
+(Descartada)
+
+Versión 1.6
+~~~~~~~~~~~
+
+1. Separamos las distintas partes en paquetes.
+2. Añadimos controladores al diseño, que interactuarán entre los modelos y las vistas.
+3. Separamos el aspecto lógico de las vistas, que pasará a estar incluido en los controladores.
+4. Aplicamos la tecnica del doble despacho, evitando asi consultar el tipo de clase.
+
+Con este último paso, terminamos de reducir el acoplamiento de las clases y aumentamos la cohesión.
+Gracias a la tecnica del doble despacho evitamos que se produzcan ciclos, y nos aseguramos de que a medida que se incremente el software no aumente el acoplamiento.
+image:img/uml_7.svg["uml 6"]
